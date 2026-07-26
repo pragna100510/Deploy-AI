@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { LogsService } from './logs.service.js';
 
 @Injectable({ deps: [LogsService] })
@@ -17,6 +16,7 @@ export class LogsTools {
       serviceName: z.string().optional()
     })
   })
+  @Widget('logs')
   async execute(args: { action: string, query?: string, serviceName?: string }) {
     switch(args.action) {
       case 'searchLogs': return { success: true, data: this.logsService.searchLogs(args.query!) };

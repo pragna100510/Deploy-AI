@@ -7,6 +7,7 @@ import { MetricsModule } from '../metrics/metrics.module.js';
 import { KubernetesModule } from '../kubernetes/kubernetes.module.js';
 import { JiraModule } from '../jira/jira.module.js';
 import { SlackModule } from '../slack/slack.module.js';
+import { ConfigModule } from '../config/config.module.js';
 
 @Module({
   name: 'investigationmodule',
@@ -17,9 +18,11 @@ import { SlackModule } from '../slack/slack.module.js';
     KubernetesModule,
     JiraModule,
     SlackModule,
+    ConfigModule,
   ],
   controllers: [InvestigationTools],
   providers: [InvestigationService],
   exports: [InvestigationService],
 })
 export class InvestigationModule {}
+

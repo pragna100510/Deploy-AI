@@ -1,12 +1,12 @@
 import { Injectable } from '@nitrostack/core';
-import * as fs from 'fs';
-import * as path from 'path';
+import { ConfigService } from '../config/config.service.js';
 
-@Injectable()
+@Injectable({ deps: [ConfigService] })
 export class MetricsService {
+  constructor(private readonly configService: ConfigService) {}
+
   private getData() {
-    const dataPath = path.join(process.cwd(), 'data', 'metrics.json');
-    return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    return this.configService.getMockData('metrics');
   }
 
   getCpuUsage() {
@@ -25,3 +25,4 @@ export class MetricsService {
     return this.getData().responseTime;
   }
 }
+

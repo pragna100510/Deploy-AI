@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { ReportService } from './report.service.js';
 
 @Injectable({ deps: [ReportService] })
@@ -16,6 +15,7 @@ export class ReportTools {
       incidentId: z.string().optional()
     })
   })
+  @Widget('report-viewer')
   async execute(args: { action: string, incidentId?: string }) {
     switch(args.action) {
       case 'generateIncidentSummary': return { success: true, data: this.reportService.generateIncidentSummary(args.incidentId!) };

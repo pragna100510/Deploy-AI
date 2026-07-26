@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { MetricsService } from './metrics.service.js';
 
 @Injectable({ deps: [MetricsService] })
@@ -16,6 +15,7 @@ export class MetricsTools {
       serviceName: z.string().optional()
     })
   })
+  @Widget('metrics')
   async execute(args: { action: string, serviceName?: string }) {
     switch(args.action) {
       case 'getCpuUsage': return { success: true, data: this.metricsService.getCpuUsage() };

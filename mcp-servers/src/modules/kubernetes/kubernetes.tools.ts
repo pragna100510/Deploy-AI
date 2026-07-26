@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { KubernetesService } from './kubernetes.service.js';
 
 @Injectable({ deps: [KubernetesService] })
@@ -17,6 +16,7 @@ export class KubernetesTools {
       deploymentName: z.string().optional()
     })
   })
+  @Widget('kubernetes')
   async execute(args: { action: string, podName?: string, deploymentName?: string }) {
     switch(args.action) {
       case 'getPodStatus': return { success: true, data: this.kubernetesService.getPodStatus(args.podName!) };

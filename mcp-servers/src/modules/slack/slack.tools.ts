@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { SlackService } from './slack.service.js';
 
 @Injectable({ deps: [SlackService] })
@@ -19,6 +18,7 @@ export class SlackTools {
       incidentId: z.string().optional()
     })
   })
+  @Widget('slack')
   async execute(args: { action: string, channel?: string, message?: string, severity?: string, incidentId?: string }) {
     switch(args.action) {
       case 'sendIncidentAlert': return { success: true, data: this.slackService.sendIncidentAlert(args.channel!, args.message!) };

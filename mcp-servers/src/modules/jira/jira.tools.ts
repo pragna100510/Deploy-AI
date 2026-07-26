@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { JiraService } from './jira.service.js';
 
 @Injectable({ deps: [JiraService] })
@@ -21,6 +20,7 @@ export class JiraTools {
       comment: z.string().optional()
     })
   })
+  @Widget('jira')
   async execute(args: { action: string, title?: string, description?: string, severity?: string, ticketId?: string, status?: string, comment?: string }) {
     switch(args.action) {
       case 'createIncidentTicket': return { success: true, data: this.jiraService.createIncidentTicket(args.title!, args.description!, args.severity!) };

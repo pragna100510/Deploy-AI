@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { InvestigationService } from './investigation.service.js';
 
 @Injectable({ deps: [InvestigationService] })
@@ -16,6 +15,7 @@ export class InvestigationTools {
       incidentId: z.string()
     })
   })
+  @Widget('investigation-timeline')
   async execute(args: { action: string, incidentId: string }) {
     console.log('THIS BINDING:', this);
     console.log('INVESTIGATION SERVICE:', this.investigationService);

@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { ControllerDecorator as Controller, Injectable } from '@nitrostack/core';
-import { ToolDecorator as Tool } from '@nitrostack/core';
+import { ControllerDecorator as Controller, Injectable, ToolDecorator as Tool, Widget } from '@nitrostack/core';
 import { GithubService } from './github.service.js';
 
 @Injectable({ deps: [GithubService] })
@@ -16,6 +15,7 @@ export class GithubTools {
       hash: z.string().optional()
     })
   })
+  @Widget('github')
   async execute(args: { action: string, hash?: string }) {
     switch(args.action) {
       case 'getRecentCommits': return { success: true, data: this.githubService.getRecentCommits() };
