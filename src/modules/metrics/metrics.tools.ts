@@ -15,7 +15,6 @@ export class MetricsTools {
       serviceName: z.string().optional()
     })
   })
-  @Widget('metrics')
   async execute(args: { action: string, serviceName?: string }) {
     switch(args.action) {
       case 'getCpuUsage': return { success: true, data: this.metricsService.getCpuUsage() };

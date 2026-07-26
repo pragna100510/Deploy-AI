@@ -15,7 +15,6 @@ export class GithubTools {
       hash: z.string().optional()
     })
   })
-  @Widget('github')
   async execute(args: { action: string, hash?: string }) {
     switch(args.action) {
       case 'getRecentCommits': return { success: true, data: this.githubService.getRecentCommits() };

@@ -15,7 +15,6 @@ export class InvestigationTools {
       incidentId: z.string()
     })
   })
-  @Widget('investigation-timeline')
   async execute(args: { action: string, incidentId: string }) {
     console.log('THIS BINDING:', this);
     console.log('INVESTIGATION SERVICE:', this.investigationService);

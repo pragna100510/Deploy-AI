@@ -14,7 +14,10 @@ if (!validScenarios.includes(scenario)) {
   process.exit(1);
 }
 
-const simulationDataDir = path.join(process.cwd(), '..', 'simulation-data');
+let simulationDataDir = path.join(process.cwd(), 'simulation-data');
+if (!fs.existsSync(simulationDataDir) && fs.existsSync(path.join(process.cwd(), '..', 'simulation-data'))) {
+  simulationDataDir = path.join(process.cwd(), '..', 'simulation-data');
+}
 const activeScenarioPath = path.join(simulationDataDir, 'active-scenario.json');
 
 try {

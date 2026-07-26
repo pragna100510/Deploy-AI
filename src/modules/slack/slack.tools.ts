@@ -18,7 +18,6 @@ export class SlackTools {
       incidentId: z.string().optional()
     })
   })
-  @Widget('slack')
   async execute(args: { action: string, channel?: string, message?: string, severity?: string, incidentId?: string }) {
     switch(args.action) {
       case 'sendIncidentAlert': return { success: true, data: this.slackService.sendIncidentAlert(args.channel!, args.message!) };

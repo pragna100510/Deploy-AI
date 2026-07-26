@@ -20,7 +20,6 @@ export class JiraTools {
       comment: z.string().optional()
     })
   })
-  @Widget('jira')
   async execute(args: { action: string, title?: string, description?: string, severity?: string, ticketId?: string, status?: string, comment?: string }) {
     switch(args.action) {
       case 'createIncidentTicket': return { success: true, data: this.jiraService.createIncidentTicket(args.title!, args.description!, args.severity!) };

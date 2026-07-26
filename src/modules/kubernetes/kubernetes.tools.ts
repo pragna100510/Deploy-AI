@@ -16,7 +16,6 @@ export class KubernetesTools {
       deploymentName: z.string().optional()
     })
   })
-  @Widget('kubernetes')
   async execute(args: { action: string, podName?: string, deploymentName?: string }) {
     switch(args.action) {
       case 'getPodStatus': return { success: true, data: this.kubernetesService.getPodStatus(args.podName!) };

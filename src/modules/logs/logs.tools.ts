@@ -16,7 +16,6 @@ export class LogsTools {
       serviceName: z.string().optional()
     })
   })
-  @Widget('logs')
   async execute(args: { action: string, query?: string, serviceName?: string }) {
     switch(args.action) {
       case 'searchLogs': return { success: true, data: this.logsService.searchLogs(args.query!) };

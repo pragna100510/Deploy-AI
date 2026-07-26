@@ -13,6 +13,10 @@ export class ConfigService {
   }
 
   getSimulationDataDirectory(): string {
+    const localDir = path.join(process.cwd(), 'simulation-data');
+    if (fs.existsSync(localDir)) {
+      return localDir;
+    }
     return path.join(process.cwd(), '..', 'simulation-data');
   }
 

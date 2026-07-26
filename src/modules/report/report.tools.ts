@@ -15,7 +15,6 @@ export class ReportTools {
       incidentId: z.string().optional()
     })
   })
-  @Widget('report-viewer')
   async execute(args: { action: string, incidentId?: string }) {
     switch(args.action) {
       case 'generateIncidentSummary': return { success: true, data: this.reportService.generateIncidentSummary(args.incidentId!) };

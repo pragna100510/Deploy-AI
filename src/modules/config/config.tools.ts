@@ -15,7 +15,6 @@ export class ConfigTools {
       serviceName: z.string().optional()
     })
   })
-  @Widget('config')
   async execute(args: { action: string, serviceName?: string }) {
     switch (args.action) {
       case 'getEnvVariables': {
