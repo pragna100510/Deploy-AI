@@ -1,6 +1,7 @@
 import { Module } from '@nitrostack/core';
 import { InvestigationService } from './investigation.service.js';
 import { InvestigationTools } from './investigation.tools.js';
+import { InvestigationPrompts } from './investigation.prompts.js';
 import { GithubModule } from '../github/github.module.js';
 import { LogsModule } from '../logs/logs.module.js';
 import { MetricsModule } from '../metrics/metrics.module.js';
@@ -20,7 +21,7 @@ import { ConfigModule } from '../config/config.module.js';
     SlackModule,
     ConfigModule,
   ],
-  controllers: [InvestigationTools],
+  controllers: [InvestigationTools, InvestigationPrompts],
   providers: [InvestigationService],
   exports: [InvestigationService],
 })
